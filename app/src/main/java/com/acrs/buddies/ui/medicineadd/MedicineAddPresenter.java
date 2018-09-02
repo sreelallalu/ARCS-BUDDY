@@ -37,6 +37,7 @@ public class MedicineAddPresenter<T extends MedicineAddView> extends BasePresent
                 if (response.isSuccessful()) {
                     try {
                         String res = response.body().string();
+                        Log.e("response",res);
                         successResponseAdded(res);
                     } catch (Exception e) {
                         e.printStackTrace();

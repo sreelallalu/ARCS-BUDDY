@@ -25,12 +25,15 @@ public class ViewRequestFromNotify extends AppCompatActivity {
         String username = intent.getStringExtra("username");
         String userlocation = intent.getStringExtra("userlocation");
 
-        user_name.setText("Patient name : " + username);
-        user_location.setText("Patient location (latitude &longitude ): " + userlocation);
+        user_name.setText(username);
+        user_location.setText(userlocation);
+        getSupportActionBar().setTitle("Emergency");
         Glide.with(this)
                 .load(url)
                 .into(imageView);
-        getSupportActionBar().setTitle("Emergency");
+
+
+
 
     }
 }

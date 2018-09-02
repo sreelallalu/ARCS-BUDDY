@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 
 import com.acrs.buddies.R;
 import com.acrs.buddies.data.AppDataManager;
@@ -67,11 +68,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void sendNotification(Map<String, String> data) throws Exception {
 
-
+        Log.e("notification",data.toString());
         String type = data.get("type");
         if (type.equalsIgnoreCase("emergency"))
 
         {
+
+            Log.e("data",data.toString());
             String url = data.get("image_url");
             String username = data.get("who");
             String location = data.get("location");
@@ -96,16 +99,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                     PendingIntent.FLAG_ONE_SHOT);
-
-
+/*
+.setStyle(new NotificationCompat.BigPictureStyle()
+                .bigPicture(bitmap))*/
             Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                    .setLargeIcon(bitmap)/*Notification icon image*/
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                            R.mipmap.ic_launcher))
                     .setSmallIcon(android.R.drawable.btn_star)
                     .setContentTitle(message)
                     .setContentText(title)
-                    .setStyle(new NotificationCompat.BigPictureStyle()
-                            .bigPicture(bitmap))/*Notification with Image*/
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent);
@@ -123,12 +126,29 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             String title = "Panic Alert";
             String message = "Your patient "+username + "is in a panic situation at "+location;
+            Intent intent = new Intent(this, ViewRequestFromNotify.class);
+
+            intent.putExtra("imageUrl", "");
+            intent.putExtra("username", username);
+            intent.putExtra("userlocation", location);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+            stackBuilder.addParentStack(DashBoardActvity.class);
+
+            stackBuilder.addNextIntentWithParentStack(intent);
+            //intent.putExtra(FIREBASE_DATA, remoteMessage);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+
             Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(android.R.drawable.btn_star)
                     .setContentTitle(title)
                     .setContentText(message)
                     .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
                     .setSound(defaultSoundUri);
             NotificationManager notificationManager =
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

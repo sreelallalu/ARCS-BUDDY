@@ -15,7 +15,9 @@ import com.acrs.buddies.R;
 import com.acrs.buddies.databinding.ActivityMedicineAddBinding;
 import com.acrs.buddies.ui.base.BaseActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -118,6 +120,7 @@ public class MedicineAddActvity extends BaseActivity implements MedicineAddView 
             hashMap.put("medicinename", medicineName);
             hashMap.put("medicinetime", medicineDate + " " + medicineTime);
             hashMap.put("medicinenote", medicineNote);
+            hashMap.put("b_id", dataManager.getUserId());
 
             presenter.addMedicineApi(hashMap);
 
@@ -241,8 +244,17 @@ public class MedicineAddActvity extends BaseActivity implements MedicineAddView 
 
         @Override
         public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int day) {
-            datecurrent = String.valueOf(year) + "-" + String.valueOf(monthOfYear)
-                    + "-" + String.valueOf(day);
+
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+
+            Calendar cal = Calendar.getInstance();
+            cal.set(year, monthOfYear, day);
+            Date date = cal.getTime();
+
+
+            datecurrent =sdf.format(date);
 
             binding.medicinedate.setText(datecurrent == null ? "" : datecurrent);
         }
@@ -255,8 +267,18 @@ public class MedicineAddActvity extends BaseActivity implements MedicineAddView 
 
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            timecurrent = String.valueOf(hourOfDay) + ":" + String.valueOf(minute) + ":00";
-            binding.medicinetime.setText(timecurrent == null ? "" : timecurrent);
-        }
+          try {
+              String sHour = "00";
+              if (hourOfDay < 10)
+                  sHour = "0" + hourOfDay;
+              else
+                  sHour = String.valueOf(hourOfDay);
+
+              timecurrent = String.valueOf(sHour) + ":" + String.valueOf(minute) + ":00";
+
+
+              binding.medicinetime.setText(timecurrent == null ? "" : timecurrent);
+          }catch (Exception e){e.printStackTrace();}
+          }
     }
 }
