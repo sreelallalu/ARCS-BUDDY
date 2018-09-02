@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.acrs.buddies">
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Splash"
+            android:theme="@style/NoActionTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.dashboard.DashBoardActvity" />
+        <activity android:name=".ui.login.LoginActvity" />
+        <activity android:name=".ui.register.RegisterActivity" />
+        <activity android:name=".ui.medicineadd.MedicineAddActvity" />
+        <activity android:name=".ui.useradd.UserAddActivity" />
+        <activity android:name=".ui.viewuser.ViewUserActivity" />
+
+        <service android:name=".di.service.FirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".di.service.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".ui.viewrequest.ViewRequestFromNotify"
+            android:parentActivityName=".ui.dashboard.DashBoardActvity"
+            >
+
+
+        </activity>
+    </application>
+
+</manifest>

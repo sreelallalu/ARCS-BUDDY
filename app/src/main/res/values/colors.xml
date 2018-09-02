@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#389fce</color>
+    <color name="colorPrimaryDark">#389fce</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="snackbarcolor">#1d80ae</color>
+    <color name="snackbarsucc">#1d80ae</color>
+    <color name="snackbarerror">#282023</color>
+    <color name="white">#ffffff</color>
+    <color name="green">#077302</color>
+    <color name="blue">#040a7c</color>
+    <color name="red">#b30404</color>
+</resources>

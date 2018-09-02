@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "878632657448",
+    "firebase_url": "https://rescuebuddy-40566.firebaseio.com",
+    "project_id": "rescuebuddy-40566",
+    "storage_bucket": "rescuebuddy-40566.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878632657448:android:f2ec3274712984a4",
+        "android_client_info": {
+          "package_name": "com.acrs.buddies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878632657448-dpv9sm8amu1109uv0t34dvshlhd03urq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.acrs.buddies",
+            "certificate_hash": "bd9df59be52d89b1707ea856f4b4e01dc96bbb19"
+          }
+        },
+        {
+          "client_id": "878632657448-eji6qm6apcues4qloog4d938ati62tnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsah846b7BImqOFjMlk6P1F6L0bUYo-YE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878632657448-eji6qm6apcues4qloog4d938ati62tnq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
