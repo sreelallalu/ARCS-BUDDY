@@ -68,18 +68,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void sendNotification(Map<String, String> data) throws Exception {
 
-        Log.e("notification",data.toString());
+        Log.e("notification", data.toString());
         String type = data.get("type");
         if (type.equalsIgnoreCase("emergency"))
 
         {
 
-            Log.e("data",data.toString());
+            Log.e("data", data.toString());
             String url = data.get("image_url");
             String username = data.get("who");
             String location = data.get("location");
 
-            String title = "Your patient "+username+" is not responding";
+            String title = "Your patient " + username + " is not responding";
             String message = PATIENT_NOT_RESPONDING_MSG;
 
             Bitmap bitmap = getBitmapfromUrl(url);
@@ -125,7 +125,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String location = data.get("location");
 
             String title = "Panic Alert";
-            String message = "Your patient "+username + "is in a panic situation at "+location;
+            String message = "Your patient " + username + "is in a panic situation at " + location;
             Intent intent = new Intent(this, ViewRequestFromNotify.class);
 
             intent.putExtra("imageUrl", "");
@@ -155,6 +155,43 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             notificationManager.notify(new Random().nextInt(61) + 20 /* ID of notification */, notificationBuilder.build());
 
+
+        } else if (type.equalsIgnoreCase("takepicresponse")) {
+
+            String username = data.get("who");
+            String location = data.get("location");
+            String url = data.get("image_url");
+
+            String title = "Your patient current location";
+            String message = "Your patient " + username + "current location" + location;
+            Intent intent = new Intent(this, ViewRequestFromNotify.class);
+
+            intent.putExtra("imageUrl", url);
+            intent.putExtra("username", username);
+            intent.putExtra("userlocation", location);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+            stackBuilder.addParentStack(DashBoardActvity.class);
+
+            stackBuilder.addNextIntentWithParentStack(intent);
+            //intent.putExtra(FIREBASE_DATA, remoteMessage);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+
+            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                    .setSmallIcon(android.R.drawable.btn_star)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setSound(defaultSoundUri);
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.notify(new Random().nextInt(61) + 20 /* ID of notification */, notificationBuilder.build());
 
         }
 

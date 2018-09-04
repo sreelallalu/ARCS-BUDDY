@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.acrs.buddies.R;
 import com.acrs.buddies.databinding.ActivityMedicineAddBinding;
@@ -102,6 +103,7 @@ public class MedicineAddActvity extends BaseActivity implements MedicineAddView 
         }
 
         if (patientId == null) {
+            Toast.makeText(this, "Select patient", Toast.LENGTH_SHORT).show();
             check = false;
         }
 

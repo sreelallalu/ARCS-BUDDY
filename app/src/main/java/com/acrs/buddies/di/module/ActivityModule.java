@@ -13,6 +13,9 @@ import com.acrs.buddies.ui.medicineadd.MedicineAdd_i_Presenter;
 import com.acrs.buddies.ui.register.RegisterPresenter;
 import com.acrs.buddies.ui.register.RegisterView;
 import com.acrs.buddies.ui.register.Register_i_Presenter;
+import com.acrs.buddies.ui.takepic.TakePicturePresenter;
+import com.acrs.buddies.ui.takepic.TakePictureView;
+import com.acrs.buddies.ui.takepic.TakePicture_i_Presenter;
 import com.acrs.buddies.ui.useradd.UserAddPresenter;
 import com.acrs.buddies.ui.useradd.UserAddView;
 import com.acrs.buddies.ui.useradd.UserAdd_i_Presenter;
@@ -74,6 +77,11 @@ public class ActivityModule {
 
     @Provides
     ViewUser_i_Presenter<ViewUserView> viewuser_preseter(ViewUserPresenter<ViewUserView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    TakePicture_i_Presenter<TakePictureView> take_preseter(TakePicturePresenter<TakePictureView> presenter) {
         return presenter;
     }
 }

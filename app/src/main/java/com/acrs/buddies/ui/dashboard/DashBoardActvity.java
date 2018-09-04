@@ -12,6 +12,7 @@ import com.acrs.buddies.databinding.ActivityDashBoardBinding;
 import com.acrs.buddies.ui.base.BaseActivity;
 import com.acrs.buddies.ui.login.LoginActvity;
 import com.acrs.buddies.ui.medicineadd.MedicineAddActvity;
+import com.acrs.buddies.ui.takepic.TakePictureActivity;
 import com.acrs.buddies.ui.useradd.UserAddActivity;
 import com.acrs.buddies.ui.viewuser.ViewUserActivity;
 
@@ -44,6 +45,14 @@ public class DashBoardActvity extends BaseActivity implements DashBoardView {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashBoardActvity.this, ViewUserActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        binding.takepic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashBoardActvity.this, TakePictureActivity.class);
                 startActivity(intent);
 
             }
