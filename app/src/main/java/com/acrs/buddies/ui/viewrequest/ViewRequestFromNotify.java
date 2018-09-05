@@ -32,8 +32,13 @@ public class ViewRequestFromNotify extends AppCompatActivity {
                 .load(url)
                 .into(imageView);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
+    }
 
-
+    @Override
+    public void onBackPressed() {
+      //  startActivity(new Intent(this, DashBoardActvity.class));
+        finish();
     }
 }

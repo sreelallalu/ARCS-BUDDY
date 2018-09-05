@@ -84,6 +84,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             Bitmap bitmap = getBitmapfromUrl(url);
 
+
             Intent intent = new Intent(this, ViewRequestFromNotify.class);
 
             intent.putExtra("imageUrl", url);
@@ -94,7 +95,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             stackBuilder.addNextIntentWithParentStack(intent);
             //intent.putExtra(FIREBASE_DATA, remoteMessage);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -136,7 +137,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             stackBuilder.addNextIntentWithParentStack(intent);
             //intent.putExtra(FIREBASE_DATA, remoteMessage);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -164,8 +165,38 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             String title = "Your patient current location";
             String message = "Your patient " + username + "current location" + location;
-            Intent intent = new Intent(this, ViewRequestFromNotify.class);
 
+
+    /*        Intent intent = new Intent(this, DashBoardActvity.class);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+            stackBuilder.addParentStack(DashBoardActvity.class);
+            stackBuilder.addNextIntent(intent);
+            Intent viewinent = new Intent(this, ViewRequestFromNotify.class);
+            viewinent.putExtra("imageUrl", url);
+            viewinent.putExtra("username", username);
+            viewinent.putExtra("userlocation", location);
+            stackBuilder.addNextIntent(viewinent);
+*/
+
+
+    /*        Intent intent = new Intent(this, ViewRequestFromNotify.class);
+            intent.putExtra("imageUrl", url);
+            intent.putExtra("username", username);
+            intent.putExtra("userlocation", location);
+
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+            stackBuilder.addParentStack(DashBoardActvity.class);
+
+            stackBuilder.addNextIntentWithParentStack(intent);
+            //intent.putExtra(FIREBASE_DATA, remoteMessage);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 *//* Request code *//*, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+*/
+
+
+            Intent intent = new Intent(this, ViewRequestFromNotify.class);
             intent.putExtra("imageUrl", url);
             intent.putExtra("username", username);
             intent.putExtra("userlocation", location);
@@ -174,11 +205,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             stackBuilder.addNextIntentWithParentStack(intent);
             //intent.putExtra(FIREBASE_DATA, remoteMessage);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            PendingIntent pendingIntent =
+                    stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                    PendingIntent.FLAG_ONE_SHOT);
 
             Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
